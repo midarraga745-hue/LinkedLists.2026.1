@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="LinkedLists.Console/LinkedLists.Console.csproj" Id="017d47f1-6290-4283-a1de-0c30a60c3293" />
+  <Project Path="SimpleList/SimpleList.csproj" />
+</Solution>
