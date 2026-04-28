@@ -97,11 +97,44 @@ public class SinglyLinkedList<T> : ILinkedList<T>
 
     public void InsertOrdered(T data)
     {
-        throw new NotImplementedException();
+        var comparable = (IComparable<T>)data!;
+        var newNode = new Node<T>(data);
+
+        if (_head == null || comparable.CompareTo(_head.Data) <= 0)
+        {
+            newNode.Next = _head;
+            _head = newNode;
+            return;
+        }
+
+        var current = _head;
+        while (current.Next != null && comparable.CompareTo(current.Next.Data) > 0)
+        {
+            current = current.Next;
+        }
+        newNode.Next = current.Next;
+        current.Next = newNode;
     }
 
     public void Sort()
     {
-        throw new NotImplementedException();
+        if (_head == null) return;
+
+        bool swapped;
+        do
+        {
+            swapped = false;
+            var current = _head;
+            while (current.Next != null)
+            {
+                var a = (IComparable<T>)current.Data!;
+                if (a.CompareTo(current.Next.Data) > 0)
+                {
+                    (current.Next.Data, current.Data) = (current.Data, current.Next.Data);
+                    swapped = true;
+                }
+                current = current.Next;
+            }
+        } while (swapped);
     }
 }
